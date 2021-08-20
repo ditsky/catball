@@ -14,7 +14,7 @@ public class BallController : MonoBehaviour
     void Start()
     {
         ball = GetComponent<Rigidbody2D> ();
-        goalText = GameObject.Find("goalText").GetComponent<Text>();
+        //goalText = GameObject.Find("goalText").GetComponent<Text>();
     }
 
     // Update is called once per frame

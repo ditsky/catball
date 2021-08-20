@@ -37,5 +37,18 @@ namespace Network
                 NetworkManager.Singleton.NetworkConfig.NetworkTransport.GetType().Name);
             GUILayout.Label("Mode: " + mode);
         }
+
+        static void SubmitNewPosition()
+        {
+            if (NetworkManager.Singleton.ConnectedClients.TryGetValue(NetworkManager.Singleton.LocalClientId,
+                out var networkedClient))
+            {
+                var player = networkedClient.PlayerObject.GetComponent<Breacher>();
+                if (player)
+                {
+                    Debug.Log("Have Player");
+                }
+            }
+        }
     }
 }

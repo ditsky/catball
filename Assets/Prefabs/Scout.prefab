@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -172,10 +173,11 @@ GameObject:
   - component: {fileID: 2098046892484662252}
   - component: {fileID: 2098046892484662253}
   - component: {fileID: 5094546812479263822}
-  - component: {fileID: 5351058491296008530}
   - component: {fileID: 5480681239156807494}
   - component: {fileID: 6652618049498583275}
-  - component: {fileID: 501957832065624936}
+  - component: {fileID: 3338888679073283981}
+  - component: {fileID: 116515197409087208}
+  - component: {fileID: 3915735965126911871}
   m_Layer: 0
   m_Name: Scout
   m_TagString: Player
@@ -214,6 +216,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -270,23 +273,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &5351058491296008530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2098046892484662254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8f5400bc453e2ed3a411a9f96e7520e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 100
-  gains: 100
-  dashCount: 10
-  legs: 100
-  uiText: 'Dash Remaining: '
 --- !u!61 &5480681239156807494
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -330,7 +316,55 @@ MonoBehaviour:
   PrefabHashGenerator: Scout
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
---- !u!114 &501957832065624936
+--- !u!114 &3338888679073283981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098046892484662254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FixedSendsPerSecond: 58.2
+  AssumeSyncedSends: 1
+  InterpolatePosition: 1
+  SnapDistance: 10
+  InterpolateServer: 1
+  MinMeters: 0.15
+  MinDegrees: 1.5
+  ExtrapolatePosition: 0
+  MaxSendsToExtrapolate: 5
+  Channel: 
+  EnableRange: 0
+  EnableNonProvokedResendChecks: 0
+  DistanceSendrate:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 20
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 500
+      value: 20
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &116515197409087208
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -342,6 +376,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a61dc6eb8aa44e80c86fd10654d37eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3915735965126911871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098046892484662254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f5400bc453e2ed3a411a9f96e7520e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 2098046892366841544}
+  speed: 100
+  gains: 1000000
+  dashCount: 11
+  legs: 1000
+  uiText: 'Dash Remaining: '
+  isLocalPlayer: 1
 --- !u!1 &2932122773156952782
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,6 +478,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &4232365752256525680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -502,6 +556,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

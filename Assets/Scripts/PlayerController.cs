@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D ball;
     private Camera cam;
     private Text dashUI;
+    private bool client;
     
     
 
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         player = GetComponent<Rigidbody2D> ();
         cam = GetComponent<Camera>();
+        cam.enabled = false;
         dashUI = GameObject.Find("dashUI").GetComponent<Text>();
         player.freezeRotation = true;
     }
@@ -36,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
         if (dashCount > 0 && Input.GetButtonDown("Jump"))
             Dash();
+        
 
         dashUI.text = uiText + dashCount.ToString();
     }
@@ -116,4 +119,4 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(DelayCollision());
     }
 
-}
+}*/

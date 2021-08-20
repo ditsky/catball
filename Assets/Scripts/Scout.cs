@@ -1,19 +1,22 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
+using MLAPI;
 
 public class Scout : MonoBehaviour
 {
 
+    public Camera playerCamera;
     public float speed;                //Floating point variable to store the player's movement speed.
     public int gains;
     public int dashCount;
     public int legs;
     public string uiText = "Dash Remaining: ";
+    public bool isLocalPlayer = true;
 
     private Rigidbody2D scout;        //Store a reference to the Rigidbody2D component required to use 2D Physics.
     private Rigidbody2D ball;
-    private Camera cam;
     private Text dashUI;
     
     
@@ -23,8 +26,19 @@ public class Scout : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        
+        if (isLocalPlayer)
+        {
+            playerCamera.enabled = true;
+        }
+        else
+        {
+            playerCamera.enabled = false;
+        }
+        
+        
         scout = GetComponent<Rigidbody2D>();
-        cam = GetComponent<Camera>();
+        
         dashUI = GameObject.Find("dashUI").GetComponent<Text>();
         scout.freezeRotation = true;
     }

@@ -37,8 +37,10 @@ namespace Network
             PlayerPositions.Add(playerId, homePosition);
 
             isServer = NetworkManager.Singleton.IsServer;
-            if (!isServer)
+            Scout scout = gameObject.GetComponent<Scout>();
+            if (!IsLocalPlayer)
             {
+                scout.isLocalPlayer = false;
                 InvokeRepeating("SendPosition", 1.0f, 0.1f);
             }
         }
@@ -57,8 +59,11 @@ namespace Network
         
         void Update()
         {
-            Debug.Log("Updating Player Position For: " + playerId);
-            transform.position = PlayerPositions[playerId];
+            if (!isServer)
+            {
+                Debug.Log("Updating Player Position For: " + playerId);
+                //transform.position = PlayerPositions[playerId];
+            }
         }
     }
 }
