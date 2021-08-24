@@ -118,11 +118,13 @@ public class Scout : MonoBehaviour
         Physics2D.IgnoreCollision(ball.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>(), true);
         ball.mass = 5;
         
-        Vector2 cursorInWorldPos = Camera.main.ScreenToWorldPoint( Input.mousePosition );
-        Vector2 mouseDelta = cursorInWorldPos - scout.position;
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = Camera.main.nearClipPlane;
+        Vector2 cursorInWorldPos = Camera.main.ScreenToWorldPoint( mousePos );
+        
+        Vector2 mouseDelta =  cursorInWorldPos - scout.position;
         mouseDelta.Normalize();
-
-        ball.velocity = mouseDelta * gains;
+        ball.velocity = scout.velocity + mouseDelta * gains;
         
         possession = false;
         float start = Time.time;

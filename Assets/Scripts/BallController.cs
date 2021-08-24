@@ -14,19 +14,14 @@ public class BallController : MonoBehaviour
     void Start()
     {
         ball = GetComponent<Rigidbody2D> ();
-        //goalText = GameObject.Find("goalText").GetComponent<Text>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "goal")
         {
+            Debug.Log("GOAAAAL");
+            goalText = GameObject.Find("goalText").GetComponent<Text>();
             goalText.text = "GOALLLLLLLL!!!!!!!!!!!!!!!!!!!";
             StartCoroutine(DelayReset());
         }
