@@ -15,7 +15,9 @@ public class Scout : MonoBehaviour
     public string uiText = "Dash Remaining: ";
     public bool isLocalPlayer = true;
 
+    private Arena arena;
     private Rigidbody2D scout;        //Store a reference to the Rigidbody2D component required to use 2D Physics.
+    private SpriteRenderer player;
     private Rigidbody2D ball;
     private Text dashUI;
     
@@ -36,8 +38,9 @@ public class Scout : MonoBehaviour
             playerCamera.enabled = false;
         }
         
-        
+        arena = FindObjectOfType<Arena>();
         scout = GetComponent<Rigidbody2D>();
+        player = GetComponent<SpriteRenderer>();
         
         dashUI = GameObject.Find("dashUI").GetComponent<Text>();
         scout.freezeRotation = true;
@@ -76,7 +79,6 @@ public class Scout : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "ball" && !possession) {
-            Debug.Log("OnCollisionEnter2D");
             RelativeJoint2D joint = scout.gameObject.AddComponent<RelativeJoint2D>();
             ball = col.rigidbody;
             // conects the joint to the other object
@@ -92,6 +94,9 @@ public class Scout : MonoBehaviour
             Destroy(col.gameObject);
             dashCount++;
         }
+        else if (col.gameObject.tag == "spike") {
+            arena.Respawn(gameObject);
+        }
         
 
     }
@@ -100,7 +105,7 @@ public class Scout : MonoBehaviour
         //Declare a yield instruction.
         WaitForSeconds wait = new WaitForSeconds(1);
 
-        yield return wait; //Pause the loop for 3 seconds.
+        yield return wait; //Pause the loop for 1 second.
         if (ball)
             Physics2D.IgnoreCollision(ball.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false);
    }

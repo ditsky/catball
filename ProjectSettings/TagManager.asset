@@ -9,6 +9,8 @@ TagManager:
   - goal
   - player
   - scout
+  - spike
+  - arena
   layers:
   - Default
   - TransparentFX
