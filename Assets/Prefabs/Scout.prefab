@@ -121,7 +121,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -136,7 +136,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 132
+  field of view: 120
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 3338888679073283981}
   - component: {fileID: 116515197409087208}
   - component: {fileID: 3915735965126911871}
+  - component: {fileID: 3400038001510465573}
   m_Layer: 0
   m_Name: Scout
   m_TagString: Player
@@ -194,7 +195,7 @@ Transform:
   m_GameObject: {fileID: 2098046892484662254}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 126.5, y: -9.5, z: -50}
-  m_LocalScale: {x: 1.1731578, y: 1.0194069, z: 1}
+  m_LocalScale: {x: 1.4, y: 1.3, z: 1}
   m_Children:
   - {fileID: 2098046892366841546}
   - {fileID: 862901640280271725}
@@ -395,6 +396,25 @@ MonoBehaviour:
   legs: 100
   uiText: 'Dash Remaining: '
   isLocalPlayer: 1
+--- !u!95 &3400038001510465573
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098046892484662254}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5fde352c2726ac294b920d0083584517, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2932122773156952782
 GameObject:
   m_ObjectHideFlags: 0
