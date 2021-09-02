@@ -5,6 +5,9 @@ namespace Network
 {
     public class HostManager : MonoBehaviour
     {
+
+        string ipaddr = "127.0.0.1";
+        
         void OnGUI()
         {
             GUILayout.BeginArea(new Rect(10, 10, 300, 300));
@@ -21,8 +24,9 @@ namespace Network
             GUILayout.EndArea();
         }
 
-        static void StartButtons()
+        void StartButtons()
         {
+            GUILayout.TextArea(ipaddr, 15);
             if (GUILayout.Button("Host")) NetworkManager.Singleton.StartHost();
             if (GUILayout.Button("Client")) NetworkManager.Singleton.StartClient();
             if (GUILayout.Button("Server")) NetworkManager.Singleton.StartServer();
