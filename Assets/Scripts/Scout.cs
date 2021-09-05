@@ -19,9 +19,10 @@ public class Scout : MonoBehaviour
     private Rigidbody2D scout;        //Store a reference to the Rigidbody2D component required to use 2D Physics.
     private SpriteRenderer player;
     private Rigidbody2D ball;
+    private Rigidbody2D disc;
     private Text dashUI;
-    
-    
+
+    public bool trainingMode = false;
 
     private bool possession = false;
 
@@ -41,9 +42,20 @@ public class Scout : MonoBehaviour
         arena = FindObjectOfType<Arena>();
         scout = GetComponent<Rigidbody2D>();
         player = GetComponent<SpriteRenderer>();
+        disc = GameObject.Find("Disc").GetComponent<Rigidbody2D>();
         
         dashUI = GameObject.Find("dashUI").GetComponent<Text>();
         scout.freezeRotation = true;
+
+        // Possibly change to a label or other identification later
+        trainingMode = arena.name == "TrainingArena";
+        // If Training is Enabled, enable the training mods
+        if (true == trainingMode)
+        {
+            TrainingMods training = gameObject.AddComponent<TrainingMods>() as TrainingMods;
+            // Give the Training Mods a reference to the disc
+            training.Load(disc);
+        }
     }
 
     void Update()
@@ -78,7 +90,7 @@ public class Scout : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "ball" && !possession) {
+        if (col.gameObject.tag == "disc" && !possession) {
             RelativeJoint2D joint = scout.gameObject.AddComponent<RelativeJoint2D>();
             ball = col.rigidbody;
             // conects the joint to the other object

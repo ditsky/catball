@@ -4,13 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - ball
   - dash
   - goal
   - player
   - scout
   - spike
   - arena
+  - disc
   layers:
   - Default
   - TransparentFX

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Arena : MonoBehaviour
 {
-   
     private Vector3 homePosition = new Vector3(186, 93,-50);
+    private GameObject disc;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+      disc = GameObject.Find("Disc");
     }
 
     // Update is called once per frame
