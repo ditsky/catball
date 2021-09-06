@@ -16,6 +16,7 @@ public class Scout : MonoBehaviour
     public bool isLocalPlayer = true;
 
     private Arena arena;
+    private SoundEffects soundEffects;
     private Rigidbody2D scout;        //Store a reference to the Rigidbody2D component required to use 2D Physics.
     private SpriteRenderer player;
     private Rigidbody2D ball;
@@ -42,6 +43,7 @@ public class Scout : MonoBehaviour
         arena = FindObjectOfType<Arena>();
         scout = GetComponent<Rigidbody2D>();
         player = GetComponent<SpriteRenderer>();
+        soundEffects = GetComponent<SoundEffects>();
         disc = GameObject.Find("Disc").GetComponent<Rigidbody2D>();
         
         dashUI = GameObject.Find("dashUI").GetComponent<Text>();
@@ -103,11 +105,16 @@ public class Scout : MonoBehaviour
             possession = true;
         }
         else if (col.gameObject.tag == "dash") {
+            soundEffects.Powerup();
             Destroy(col.gameObject);
             dashCount++;
         }
         else if (col.gameObject.tag == "spike") {
-            arena.Respawn(gameObject);
+            soundEffects.Pop();
+            //arena.Respawn(gameObject);
+        }
+        else if (col.gameObject.tag == "wall") {
+            soundEffects.Bounce();
         }
         
 
@@ -125,6 +132,7 @@ public class Scout : MonoBehaviour
    void Dash()
    {
         Vector2 movement = getMovementInput();
+        soundEffects.Dash();
         scout.velocity = movement * legs;
         dashCount--;
    }
@@ -141,6 +149,9 @@ public class Scout : MonoBehaviour
         
         Vector2 mouseDelta =  cursorInWorldPos - scout.position;
         mouseDelta.Normalize();
+
+        soundEffects.Shoot();
+
         ball.velocity = scout.velocity + mouseDelta * gains;
         
         possession = false;

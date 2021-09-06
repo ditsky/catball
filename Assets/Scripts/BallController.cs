@@ -9,18 +9,20 @@ public class BallController : MonoBehaviour
 
     private Rigidbody2D ball;
     private Text goalText;
+    private SoundEffects soundEffects;
 
     // Start is called before the first frame update
     void Start()
     {
         ball = GetComponent<Rigidbody2D> ();
+        soundEffects = GetComponent<SoundEffects>();
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "goal")
         {
-            Debug.Log("GOAAAAL");
+            soundEffects.Goal();
             goalText = GameObject.Find("goalText").GetComponent<Text>();
             goalText.text = "GOALLLLLLLL!!!!!!!!!!!!!!!!!!!";
             StartCoroutine(DelayReset());

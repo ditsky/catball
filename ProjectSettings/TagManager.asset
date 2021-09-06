@@ -11,6 +11,8 @@ TagManager:
   - spike
   - arena
   - disc
+  - ball
+  - wall
   layers:
   - Default
   - TransparentFX
