@@ -775,11 +775,14 @@ MonoBehaviour:
   playerCamera: {fileID: 2098046892366841544}
   speed: 100
   gains: 100
-  dashCount: 11
+  isLocalPlayer: 1
+  disc: {fileID: 0}
+  abilityCount: 10
+  soundEffects: {fileID: 0}
+  playerBody: {fileID: 0}
+  trainingMode: 0
   legs: 100
   uiText: 'Dash Remaining: '
-  isLocalPlayer: 1
-  trainingMode: 0
 --- !u!95 &3400038001510465573
 Animator:
   serializedVersion: 3
