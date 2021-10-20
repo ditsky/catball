@@ -321,7 +321,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8868b661e1ccc7a4585d1c30c08e21e3, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.758
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -780,6 +780,7 @@ GameObject:
   - component: {fileID: 629785128}
   - component: {fileID: 629785127}
   - component: {fileID: 629785126}
+  - component: {fileID: 629785130}
   m_Layer: 0
   m_Name: GoalA
   m_TagString: goal
@@ -876,6 +877,19 @@ Transform:
   m_Father: {fileID: 1263841892}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &629785130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629785125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a830eb40b9d3e8cae96de47a932a28d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
 --- !u!4 &696312550 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6107999673934125595, guid: c455d3480139adfe6b5137ef138bbce7,
@@ -6322,6 +6336,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4f2e9dbe1456ae05bbc95ae720d2c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCount: 0
+--- !u!1 &1386332466 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1010698465995857157, guid: 15b91fa514ec49425b7cbbab46458e6f,
+    type: 3}
+  m_PrefabInstance: {fileID: 452732403}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1386332467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386332466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NetworkInstanceId: 0
+  PrefabHash: 613110621780239128
+  PrefabHashGenerator: Boost (1)
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
 --- !u!1 &1524478618
 GameObject:
   m_ObjectHideFlags: 0
@@ -6953,6 +6991,7 @@ GameObject:
   - component: {fileID: 1895927013}
   - component: {fileID: 1895927012}
   - component: {fileID: 1895927011}
+  - component: {fileID: 1895927015}
   m_Layer: 0
   m_Name: GoalB
   m_TagString: goal
@@ -7049,6 +7088,19 @@ Transform:
   m_Father: {fileID: 1263841892}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1895927015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895927010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a830eb40b9d3e8cae96de47a932a28d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 1
 --- !u!4 &1946544598 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6107999673934125595, guid: c455d3480139adfe6b5137ef138bbce7,

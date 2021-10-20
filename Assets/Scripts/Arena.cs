@@ -6,6 +6,14 @@ public class Arena : MonoBehaviour
 {
     private Vector3 homePosition = new Vector3(186, 93,-50);
     private GameObject disc;
+    public Dictionary<int, List<int>> playerTeams = new Dictionary<int, List<int>>()
+    {
+      // Team 0
+      {0, new List<int>()},
+      // Team 1
+      {1, new List<int>()}
+    };
+    public int playerCount = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +24,23 @@ public class Arena : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    // Handles player initialization when they enter the game
+    public void JoinGame(Player player) {
+        // increment player count
+        playerCount++;
+
+        // set player team based on an even or odd player count to alternate teams
+        int team = playerCount % 2;
+
+        // set player data
+        player.id = playerCount;
+        player.team = team;
+
+        // Add new player to the player map
+        playerTeams[team].Add(player.id);
     }
 
     public void Respawn(GameObject player)

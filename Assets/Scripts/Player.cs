@@ -30,10 +30,13 @@ public class Player : MonoBehaviour
     public bool trainingMode = false;
     // Bool which determines whether or not this player has possesion of the ball
     private bool possession = false;
+    // Team name for player
+    public int team;
+    public int id;
 
     // Use this for initialization
     public void Start()
-    {
+    {        
         // If this is the local player
         if (isLocalPlayer)
         {
@@ -52,7 +55,10 @@ public class Player : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         soundEffects = GetComponent<SoundEffects>();
         disc = GameObject.Find("Disc").GetComponent<Rigidbody2D>();
-        
+
+        // Initialize the new player into the game
+        arena.JoinGame(this);
+
         // Keep physics body from spinning
         playerBody.freezeRotation = true;
 

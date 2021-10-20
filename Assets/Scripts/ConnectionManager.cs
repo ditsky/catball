@@ -14,7 +14,7 @@ public class ConnectionManager : MonoBehaviour
 
     public GameObject connectionButtonPanel;
     
-    public string ipAddress;
+    public string ipAddress = "127.0.0.1";
     UNetTransport transport;
 
     public void Host() {

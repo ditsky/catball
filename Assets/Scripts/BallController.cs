@@ -8,7 +8,6 @@ public class BallController : MonoBehaviour
 {
 
     private Rigidbody2D ball;
-    private Text goalText;
     private SoundEffects soundEffects;
 
     // Start is called before the first frame update
@@ -23,8 +22,6 @@ public class BallController : MonoBehaviour
         if (col.gameObject.tag == "goal")
         {
             soundEffects.Goal();
-            goalText = GameObject.Find("goalText").GetComponent<Text>();
-            goalText.text = "GOALLLLLLLL!!!!!!!!!!!!!!!!!!!";
             StartCoroutine(DelayReset());
         }
     }
