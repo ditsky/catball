@@ -561,6 +561,7 @@ GameObject:
   - component: {fileID: 3915735965126911871}
   - component: {fileID: 3400038001510465573}
   - component: {fileID: 5275085779667497244}
+  - component: {fileID: 8793517034792167344}
   m_Layer: 0
   m_Name: Scout
   m_TagString: Player
@@ -822,6 +823,18 @@ MonoBehaviour:
   bounce: {fileID: 6617617922895527773}
   goal: {fileID: 1335819355758602200}
   shoot: {fileID: 4007725999391145015}
+--- !u!114 &8793517034792167344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098046892484662254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab6bf941db7bdce193dc42d8dd16d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2932122773156952782
 GameObject:
   m_ObjectHideFlags: 0
