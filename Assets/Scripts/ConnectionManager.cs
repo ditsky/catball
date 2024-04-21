@@ -1,20 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
+using Unity.Netcode.Transports.UNET;
 using UnityEngine;
-using MLAPI;
-using MLAPI.Spawning;
-using MLAPI.Transports.UNET;
 
-public class ConnectionManager : MonoBehaviour
+public class ConnectionManager : NetworkBehaviour
 {
 
     // Simple starting positions
-    Vector3 host = new Vector3(247, 39, -50);
-    Vector3 client = new Vector3(247, 330, -50);
+    Vector3 host = new Vector3(16, 210, -50);
+    Vector3 client = new Vector3(-3, -220, -50);
 
     public GameObject connectionButtonPanel;
     
-    public string ipAddress = "127.0.0.1";
+    public string ipAddress = "73.89.31.27";
     UNetTransport transport;
 
     public void Host() {
@@ -22,7 +21,12 @@ public class ConnectionManager : MonoBehaviour
         
         // Activate callback for potentially joining clients
         NetworkManager.Singleton.ConnectionApprovalCallback += ApprovalCheck;
-        NetworkManager.Singleton.StartHost(host, Quaternion.identity);
+        NetworkManager.Singleton.StartHost();
+    }
+
+    public void StartServer() {
+        NetworkManager.Singleton.ConnectionApprovalCallback += ApprovalCheck;
+        NetworkManager.Singleton.StartServer();
     }
 
     private void ApprovalCheck(byte[] connectionData, ulong clientID, NetworkManager.ConnectionApprovedDelegate callback)

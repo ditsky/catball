@@ -1,10 +1,9 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Networking;
-using MLAPI;
+using Unity.Netcode;
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
     // Camera attached to this player
     public Camera playerCamera; 
@@ -12,8 +11,6 @@ public class Player : MonoBehaviour
     public float speed; 
     // Int to store player's throw power               
     public int gains;
-    // Bool which determines if this is a local player or a client
-    public bool isLocalPlayer = true;
     // Physics body for the game disc
     public Rigidbody2D disc;
     // Counter for remaining ability uses
@@ -30,15 +27,19 @@ public class Player : MonoBehaviour
     public bool trainingMode = false;
     // Bool which determines whether or not this player has possesion of the ball
     private bool possession = false;
+    public NetworkVariable<bool> jointed = new NetworkVariable<bool>(false);
     // Team name for player
     public int team;
     public int id;
 
     // Use this for initialization
+    
+
+    
     public void Start()
     {        
         // If this is the local player
-        if (isLocalPlayer)
+        if (IsLocalPlayer)
         {
             // Enable this player's camera
             playerCamera.enabled = true;
@@ -79,6 +80,23 @@ public class Player : MonoBehaviour
         // If player left clicks, throw the disc
         if (possession && Input.GetButtonDown("Fire1"))
             Throw();
+
+        if (jointed.Value)
+        {
+            // Create a joint to connect the disc to the player
+            RelativeJoint2D joint = gameObject.AddComponent<RelativeJoint2D>();
+
+            // conects the joint to the other object
+            joint.connectedBody = disc;
+
+            // Stops objects from continuing to collide and creating more joints
+            joint.enableCollision = false;
+
+            // Slightly distance the disc from the player sprite
+            joint.linearOffset = new Vector2(0, -0.3f);
+
+            GrabDiscServerRpc(false);
+        }
     }
 
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
@@ -100,10 +118,16 @@ public class Player : MonoBehaviour
         return new Vector2 (moveHorizontal, moveVertical);
     }
 
+    [ServerRpc]
+    private void GrabDiscServerRpc(bool isJointed)
+    {
+        jointed.Value = isJointed;
+    }
+
     void OnCollisionEnter2D(Collision2D col)
     {
         // If the player collided with the disc and does not already have possession
-        if (col.gameObject.tag == "disc" && !possession) {
+        if (col.gameObject.tag == "disc" && !possession && IsLocalPlayer) {
             // Create a joint to connect the disc to the player
             RelativeJoint2D joint = playerBody.gameObject.AddComponent<RelativeJoint2D>();
 
@@ -114,7 +138,7 @@ public class Player : MonoBehaviour
             joint.enableCollision = false;
 
             // Slightly distance the disc from the player sprite
-            joint.linearOffset = new Vector2 (0, -0.3f);
+            joint.linearOffset = new Vector2(0, -0.3f);
 
             // Remove mass from the disc to avoid slowing down player
             disc.mass = 0;

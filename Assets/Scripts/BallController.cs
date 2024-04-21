@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Unity.Netcode;
 
-public class BallController : MonoBehaviour
+public class BallController : NetworkBehaviour
 {
 
-    private Rigidbody2D ball;
+    private Rigidbody2D disc;
     private SoundEffects soundEffects;
 
     // Start is called before the first frame update
     void Start()
     {
-        ball = GetComponent<Rigidbody2D> ();
+        disc = GetComponent<Rigidbody2D> ();
         soundEffects = GetComponent<SoundEffects>();
     }
 
@@ -24,6 +25,42 @@ public class BallController : MonoBehaviour
             soundEffects.Goal();
             StartCoroutine(DelayReset());
         }
+        else if (col.gameObject.tag == "Player")
+        {
+            if (true) return;
+
+            disc.mass = 0;
+            ulong clientId = col.gameObject.GetComponent<NetworkObject>().OwnerClientId;
+
+            GetComponent<NetworkObject>().ChangeOwnership(clientId);
+
+            ClientRpcParams clientRpcParams = new ClientRpcParams
+            {
+                Send = new ClientRpcSendParams
+                {
+                    TargetClientIds = new ulong[]{clientId}
+                }
+            };
+            
+            ConnectToPlayerClientRpc(clientRpcParams);
+        }
+    }
+
+    [ClientRpc]
+    public void ConnectToPlayerClientRpc(ClientRpcParams clientRpcParams = default)
+    {
+
+        // Create a joint to connect the disc to the player
+        RelativeJoint2D joint = gameObject.AddComponent<RelativeJoint2D>();
+
+        // conects the joint to the other object
+        joint.connectedBody = disc;
+
+        // Stops objects from continuing to collide and creating more joints
+        joint.enableCollision = false;
+
+        // Slightly distance the disc from the player sprite
+        joint.linearOffset = new Vector2(0, -0.3f);
     }
 
     IEnumerator DelayReset() {

@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: e068a581043f0c067a99607f9d12c8db
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Shitmouth.unity
+    guid: 25ff4aa315eb1b52b8dac3fd5eecaac6
   m_configObjects: {}

@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using Steamworks;
-using MLAPI;
-using MLAPI.Transports.UNET;
 using UnityEngine;
+using Unity.Netcode;
 
 
 public class SteamLobby : MonoBehaviour {
 
-    public GameObject connectionButtonPanel;
+    /*public GameObject connectionButtonPanel;
 
     protected Callback<LobbyCreated_t> lobbyCreated;
     protected Callback<LobbyEnter_t> lobbyEntered;
@@ -66,6 +65,6 @@ public class SteamLobby : MonoBehaviour {
     public void HostLobby()
     {
         SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, 6);
-    }
+    }*/
     
 }
